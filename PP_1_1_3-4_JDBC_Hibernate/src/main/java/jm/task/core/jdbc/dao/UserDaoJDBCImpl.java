@@ -7,16 +7,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoJDBCImpl implements UserDao  {
-      Connection connection = null;
+public class UserDaoJDBCImpl implements UserDao {
     
+    private Connection connection = Util.getConnection();
     
     public UserDaoJDBCImpl() throws SQLException {
-      connection = Util.getConnection();
     }
     
+    
     public void createUsersTable() {
-        try (Statement statement =  connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             statement.execute("CREATE TABLE IF NOT EXISTS users (`id` INT NOT NULL AUTO_INCREMENT,`name` VARCHAR(45) NOT NULL,`lastName` VARCHAR(45) NOT NULL,`age` INT NULL,PRIMARY KEY (`id`));");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,6 +32,7 @@ public class UserDaoJDBCImpl implements UserDao  {
     }
     
     public void saveUser(String name, String lastName, byte age) {
+        
         try (PreparedStatement statement = connection.prepareStatement("INSERT INTO users(name, lastName, age) VALUES (?,?,?)");) {
             statement.setString(1, name);
             statement.setString(2, lastName);

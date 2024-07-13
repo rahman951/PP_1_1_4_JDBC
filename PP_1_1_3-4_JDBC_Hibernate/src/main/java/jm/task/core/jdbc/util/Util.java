@@ -1,15 +1,8 @@
 package jm.task.core.jdbc.util;
 
-import java.sql.*;
-
-import java.util.Properties;
-
-import jm.task.core.jdbc.model.User;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.cfg.Environment;
-import org.hibernate.service.ServiceRegistry;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 public class Util {
@@ -18,7 +11,7 @@ public class Util {
     public static Connection getConnection() throws SQLException {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/testuser", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/user", "root", "root");
             return connection;
         } catch (SQLException e) {
             e.printStackTrace();
