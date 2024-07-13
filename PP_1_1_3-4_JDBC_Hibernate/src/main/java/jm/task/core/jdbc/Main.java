@@ -7,7 +7,8 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws SQLException {
         
-        UserDao userDao = new UserDaoHibernateImpl();
+        //UserDao userDao = new UserDaoHibernateImpl();
+        UserService userDao = new UserServiceImpl();
         
         userDao.createUsersTable();
         
